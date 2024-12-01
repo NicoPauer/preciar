@@ -40,13 +40,13 @@ fn argu_text(seleccionar:usize) -> String
     return devuelto;
 }
 // Relativas al algoritmo
-fn libras_kilogramos(medida:f32) -> f32
+fn peso(medida:f32, equivalencia:f32) -> f32
 {
-    // Convierte medida en libras a medida en kilogramos
-    return medida * 0.453592;
+    // Convierte medida de peso en una unidad a otra
+    return medida * equivalencia;
 }
 
-fn convertir_divisa(precio:f32, equivalencia:f32) -> f32
+fn divisa(precio:f32, equivalencia:f32) -> f32
 {
 /*
 
@@ -60,18 +60,25 @@ fn convertir_divisa(precio:f32, equivalencia:f32) -> f32
 fn main()
 {
 // Paso 1: Obtener precio y cuantas libras compra de algo
-    let precio:f32 = argumentos(1);
 
-    let peso_libras:f32 = argumentos(2);
+    let unidad_peso_1:String = argu_text(1);
+
+    let unidad_peso_2:String = argu_text(2);
+
+    let precio:f32 = argumentos(3);
+
+    let peso_libras:f32 = argumentos(4);
+
+    let equivalencia_peso:f32 = argumentos(5);
 // Paso 2: Pasar medida en libras a kilogramos
-    let peso_kilogramos:f32 = libras_kilogramos(peso_libras);
+    let peso_kilogramos:f32 = peso(peso_libras, equivalencia_peso);
 // Paso 3: Pasar precio a divisa requerida
-    let equivalencia_a_divisa_requerida:f32 = argumentos(3);
+    let equivalencia_a_divisa_requerida:f32 = argumentos(6);
 // Adicional en Rust: obtengo divisas a usar con destructuring
-    let (divisa_1, divisa_2) = (argu_text(5), argu_text(4));
-    let conversion:f32 = convertir_divisa(precio, equivalencia_a_divisa_requerida);
+    let (divisa_1, divisa_2) = (argu_text(7), argu_text(8));
+    let conversion:f32 = divisa(precio, equivalencia_a_divisa_requerida);
 // Paso 4: Dividir entre conversion a divisa requerida y medida en kilogramos
     let resultado:f32 = truncado(conversion / peso_kilogramos, 2);
 // Muestro el resultado
-    println!("\t{divisa_1} {precio} por {peso_libras} Libras(LB), tomando {divisa_1} 1 a {divisa_2} {equivalencia_a_divisa_requerida}, es {divisa_2} {resultado} por kilo(Kg).")
+    println!("\t{divisa_1} {precio} por {peso_libras} {unidad_peso_1}, tomando {divisa_1} 1 a {divisa_2} {equivalencia_a_divisa_requerida}, es {divisa_2} {resultado} por {unidad_peso_2}.");
 }
