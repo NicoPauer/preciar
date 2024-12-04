@@ -10,3 +10,5 @@ echo "Pruebo Python..." && echo "" && sleep 1
 chmod +x preciar.py && echo "" && echo "Interpretacion:" && echo "" && time -p ./preciar.py "Onzas" "Kilogramos" "1" "1" "0.283495" "1000" "USD" "ARS" && sleep 3
 echo "" && echo "Pruebo Rust..." && echo "" && sleep 1
 echo "" && echo "Compilacion: " && echo "" && time -p rustc preciar.rs -o preciar && echo "" && echo "Ejecucion: " && time -p preciar "Onzas" "Kilogramos" "1" "1" "0.283495" "1000" "USD" "ARS" && sleep 3
+echo "" && echo "Pruebo C..." && echo "" && sleep 1
+echo "" && echo "Compilacion: " && echo "" && time -p gcc preciar.c -o preciar_c -lm && time -p ./preciar_c "Onzas" "Kilogramos" "1" "1" "0.283495" "1000" "USD" "ARS" && sleep 3
